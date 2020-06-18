@@ -1,10 +1,10 @@
-FROM alpine:3.12
+FROM openjdk:8-jdk-alpine
 
 # Define a constant with the version of maven you want to install
 ARG MAVEN_VERSION=3.6.3
 
 # Installing necessary packages
-RUN apk add --no-cache curl tar bash procps tar wget docker openrc python3 openjdk11
+RUN apk add --no-cache curl tar bash procps tar wget docker openrc python3
 
 # Downloading gcloud package
 RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz
@@ -16,7 +16,8 @@ RUN mkdir -p /usr/local/gcloud \
 
 # Adding the package path to local
 ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
-
+# ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
+# ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/bin
 # Create the directories, download maven, validate the download, install it, remove downloaded file and set links
 RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
   && echo "Downloading maven" \
