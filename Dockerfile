@@ -4,7 +4,12 @@ FROM openjdk:8-jdk-alpine
 ARG MAVEN_VERSION=3.6.3
 
 # Installing necessary packages
-RUN apk add --no-cache curl tar bash procps tar wget docker openrc python3
+RUN apk add --no-cache curl tar bash procps zip tar wget git docker openrc python3 protobuf
+
+# Installing glibc for protobuf
+RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
+    && wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.31-r0/glibc-2.31-r0.apk \
+    && apk add glibc-2.31-r0.apk
 
 # Downloading gcloud package
 RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz
