@@ -4,7 +4,7 @@ FROM openjdk:8-jdk-alpine
 ARG MAVEN_VERSION=3.6.3
 
 # Installing necessary packages
-RUN apk add --no-cache curl tar bash procps zip tar wget git docker openrc python3 protobuf
+RUN apk add --no-cache curl tar bash procps zip tar wget git docker openrc python python3 protobuf
 
 # Installing glibc for protobuf
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
