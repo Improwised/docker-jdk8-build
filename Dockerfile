@@ -1,7 +1,7 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk:18-jdk-alpine
 
 # Define a constant with the version of maven you want to install
-ARG MAVEN_VERSION=3.6.3
+ARG MAVEN_VERSION=3.8.1
 
 # Installing necessary packages
 RUN apk add --no-cache curl tar bash procps zip tar wget git docker openrc openssh-client python3 protobuf
@@ -26,7 +26,7 @@ ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
 # Create the directories, download maven, validate the download, install it, remove downloaded file and set links
 RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
   && echo "Downloading maven" \
-  && curl -fsSL -o /tmp/apache-maven.tar.gz http://apachemirror.wuchna.com/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
+  && curl -fsSL -o /tmp/apache-maven.tar.gz https://downloads.apache.org/maven/maven-3/3.8.1/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
   \
   && echo "Unzipping maven" \
   && tar -xzf /tmp/apache-maven.tar.gz -C /usr/share/maven --strip-components=1 \
