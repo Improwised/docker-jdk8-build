@@ -26,7 +26,7 @@ ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
 # Create the directories, download maven, validate the download, install it, remove downloaded file and set links
 RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
   && echo "Downloading maven" \
-  && curl -fsSL -o /tmp/apache-maven.tar.gz https://downloads.apache.org/maven/maven-3/3.8.1/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
+  && curl -fsSL -o /tmp/apache-maven.tar.gz https://downloads.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
   \
   && echo "Unzipping maven" \
   && tar -xzf /tmp/apache-maven.tar.gz -C /usr/share/maven --strip-components=1 \
@@ -38,3 +38,4 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
 # Define environmental variables required by Maven, like Maven_Home directory and where the maven repo is located
 ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "/root/.m2"
+RUN mvn --version
