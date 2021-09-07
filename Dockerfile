@@ -1,4 +1,4 @@
-FROM openjdk:18-jdk-alpine
+FROM adoptopenjdk/openjdk11:jdk-11.28-alpine
 
 # Define a constant with the version of maven you want to install
 ARG MAVEN_VERSION=3.8.1
@@ -38,4 +38,3 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
 # Define environmental variables required by Maven, like Maven_Home directory and where the maven repo is located
 ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "/root/.m2"
-RUN mvn --version
