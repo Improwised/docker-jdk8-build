@@ -1,7 +1,7 @@
-FROM adoptopenjdk/openjdk11:jdk-11.28-alpine
+FROM openjdk:17-alpine3.14
 
 # Define a constant with the version of maven you want to install
-ARG MAVEN_VERSION=3.8.1
+ARG MAVEN_VERSION=3.6.3
 
 # Installing necessary packages
 RUN apk add --no-cache curl tar bash procps zip tar wget git docker openrc openssh-client python3 protobuf
